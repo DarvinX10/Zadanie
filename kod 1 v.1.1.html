@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikacja Finansowa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .list {
+            margin-top: 20px;
+        }
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #e9ecef;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        .expense {
+            color: red;
+        }
+        .income {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Aplikacja Finansowa</h1>
+    <div class="container">
+        <!-- Formularz do dodawania przychodów i wydatków -->
+        <form id="finance-form">
+            <label for="type">Typ:</label>
+            <select id="type" required>
+                <option value="income">Przychód</option>
+                <option value="expense">Wydatek</option>
+            </select>
+            <label for="description">Opis:</label>
+            <input type="text" id="description" placeholder="Np. pensja, zakupy, rachunki" required>
+            <label for="amount">Kwota (zł):</label>
+            <input type="number" id="amount" placeholder="Wpisz kwotę" required>
+            <button type="submit">Dodaj</button>
+        </form>
+
+        <!-- Lista dodanych wydatków i przychodów -->
+        <div class="list" id="transaction-list">
+            <h3>Historia transakcji</h3>
+            <!-- Transakcje będą tutaj wyświetlane dynamicznie -->
+        </div>
+    </div>
+
+    <script>
+        // Pobieranie referencji do elementów
+        // Tomasz tu był 
+        const form = document.getElementById('finance-form');
+        const transactionList = document.getElementById('transaction-list');
+
+        // Funkcja dodająca nową transakcję do listy
+        // Veni Vid........... ZMIANANANANANANA
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Zapobiega przeładowaniu strony
+
+            const type = document.getElementById('type').value;
+            const description = document.getElementById('description').value;
+            const amount = document.getElementById('amount').value;
+
+            // Tworzenie nowego elementu transakcji
+            const transactionItem = document.createElement('div');
+            transactionItem.classList.add('list-item');
+            transactionItem.classList.add(type === 'income' ? 'income' : 'expense');
+
+            transactionItem.innerHTML = `
+                <span>${description}</span>
+                <span>${type === 'income' ? '+' : '-'} ${amount} zł</span>
+            `;
+
+            // Dodanie elementu do listy
+            transactionList.appendChild(transactionItem);
+
+            // Czyszczenie formularza
+            form.reset();
+        });
+    </script>
+</body>
+</html>
